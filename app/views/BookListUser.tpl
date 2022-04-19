@@ -30,8 +30,7 @@
 
     <div id="main">
         <div class="align-left">
-        <a href="{$conf->action_root}availableBooks" class="button primary">Dostępne książki</a>
-        </div>
+        <!-- <a href="{$conf->action_root}availableBooks" class="button primary">Dostępne książki</a> -->
             <div class="table-wrapper">
                 <table id="tab_users">
                     <thead>
@@ -63,7 +62,20 @@
                     </tbody>
                 </table>
             </div>
-<div>
+            <div align="center">
+                {if $page lte 1}
+                    <a href="{url action='bookListUser' page=$page-1}" class="button primary small disabled"><</a>
+                {else}
+                    <a href="{url action='bookListUser' page=$page-1}" class="button primary small"><</a>
+                {/if}
+                {if $limit gt $page}
+                    <a href="{url action='bookListUser' page=$page+1}" class="button primary small">></a>
+                {else}
+                    <a href="{url action='bookListUser' page=$page+1}" class="button primary small disabled">></a>
+                {/if}
+            </div>
+        </div>
+    <div>
 {if $msgs->isMessage()}
     <div class="messages bottom-margin">
         <ul>

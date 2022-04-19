@@ -32,4 +32,4 @@ Utils::addRoute('rentsListUser', 'RentsController', ['user']);
 
 Utils::addRoute('bookListUser', 'BookListController', ['user']);
 Utils::addRoute('bookRentUser', 'BookListController', ['user']);
-Utils::addRoute('availableBooks', 'BookListController', ['user']);
+// Utils::addRoute('availableBooks', 'BookListController', ['user']);

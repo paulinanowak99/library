@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f988c227-3fd3-43a8-99de-7dcbf738c4a0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/controllers/RegistrationController.class.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/RegistrationView.tpl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/LoginView.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/LoginView.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/templates_c/c2c823644aabbc9176080474b644e2dd31856f70_0.file.LoginView.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/templates_c/c2c823644aabbc9176080474b644e2dd31856f70_0.file.LoginView.tpl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/BookListController.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/BookListController.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/BookListUser.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/BookListUser.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/templates_c/60b70af8a52fd4bafb04f85717fd0caa0502e9ce_0.file.BookListUser.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/templates_c/60b70af8a52fd4bafb04f85717fd0caa0502e9ce_0.file.BookListUser.tpl.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routing.php" beforeDir="false" afterPath="$PROJECT_DIR$/routing.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -62,7 +61,7 @@
       <workItem from="1642405429456" duration="23057000" />
       <workItem from="1642599085069" duration="152000" />
       <workItem from="1642599240358" duration="23721000" />
-      <workItem from="1650313858908" duration="5392000" />
+      <workItem from="1650313858908" duration="9547000" />
     </task>
     <task id="LOCAL-00001" summary="projekt biblioteki (5 semestr)">
       <created>1650314793464</created>
@@ -71,7 +70,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650314793465</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="dodanie rejestracji">
+      <created>1650396788090</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1650396788091</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -79,6 +85,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="projekt biblioteki (5 semestr)" />
-    <option name="LAST_COMMIT_MESSAGE" value="projekt biblioteki (5 semestr)" />
+    <MESSAGE value="dodanie rejestracji" />
+    <option name="LAST_COMMIT_MESSAGE" value="dodanie rejestracji" />
   </component>
 </project>
