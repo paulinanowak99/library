@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-01-20 16:05:27
+/* Smarty version 3.1.34-dev-7, created on 2022-04-18 23:07:19
   from 'C:\xampp\htdocs\library\app\views\LoginView.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61e97a37d82f02_19046117',
+  'unifunc' => 'content_625dd307663fc9_46155414',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c2c823644aabbc9176080474b644e2dd31856f70' => 
     array (
       0 => 'C:\\xampp\\htdocs\\library\\app\\views\\LoginView.tpl',
-      1 => 1642691126,
+      1 => 1650316035,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61e97a37d82f02_19046117 (Smarty_Internal_Template $_smarty_tpl) {
+function content_625dd307663fc9_46155414 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE HTML>
 <html>
 <head>
@@ -70,6 +70,8 @@ login" method="post">
                 <div class="col-12">
                     <ul class="actions">
                         <li><input type="submit" value="Zaloguj" class="primary" /></li>
+                        <li><a class="button primary medium" href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
+registration">Zarejestruj się</a></li>
                     </ul>
                 </div>
             </div>

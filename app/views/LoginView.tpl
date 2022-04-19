@@ -44,6 +44,7 @@
                 <div class="col-12">
                     <ul class="actions">
                         <li><input type="submit" value="Zaloguj" class="primary" /></li>
+                        <li><a class="button primary medium" href="{$conf->action_root}registration">Zarejestruj się</a></li>
                     </ul>
                 </div>
             </div>

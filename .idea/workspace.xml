@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f988c227-3fd3-43a8-99de-7dcbf738c4a0" name="Default Changelist" comment="" />
+    <list default="true" id="f988c227-3fd3-43a8-99de-7dcbf738c4a0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/controllers/RegistrationController.class.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/RegistrationView.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/LoginView.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/LoginView.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/templates_c/c2c823644aabbc9176080474b644e2dd31856f70_0.file.LoginView.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/templates_c/c2c823644aabbc9176080474b644e2dd31856f70_0.file.LoginView.tpl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routing.php" beforeDir="false" afterPath="$PROJECT_DIR$/routing.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -9,6 +16,9 @@
   </component>
   <component name="ComposerSettings">
     <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -19,6 +29,7 @@
     </file-type-list>
   </component>
   <component name="ProjectId" id="23H2QbgkBJddaGwWDnRnGWBHsXd" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -51,11 +62,23 @@
       <workItem from="1642405429456" duration="23057000" />
       <workItem from="1642599085069" duration="152000" />
       <workItem from="1642599240358" duration="23721000" />
-      <workItem from="1650313858908" duration="579000" />
+      <workItem from="1650313858908" duration="5392000" />
     </task>
+    <task id="LOCAL-00001" summary="projekt biblioteki (5 semestr)">
+      <created>1650314793464</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1650314793465</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="projekt biblioteki (5 semestr)" />
+    <option name="LAST_COMMIT_MESSAGE" value="projekt biblioteki (5 semestr)" />
   </component>
 </project>

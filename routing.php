@@ -23,6 +23,8 @@ Utils::addRoute('bookSave', 'BookEditController', ['admin']);
 Utils::addRoute('login', 'LoginController');
 Utils::addRoute('loginShow', 'LoginController');
 Utils::addRoute('logout', 'LoginController');
+Utils::addRoute('registration', 'RegistrationController');
+Utils::addRoute('registrationSave', 'RegistrationController');
 
 Utils::addRoute('rentList', 'RentsController', ['admin']);
 Utils::addRoute('rentDelete', 'RentsController', ['admin']);
