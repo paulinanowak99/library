@@ -11,14 +11,15 @@ use core\Utils;
 
 class BookListController {
     private $records; //rekordy pobrane z bazy
-    private $form;
+    private $pagination; //dane do paginacji
 
     public function __construct(){
-        $this->form = new PageForm();
+        $this->pagination = new PageForm();
     }
 
     public function action_bookList() {
         try {
+            // wyciągnięcie wszystkich rekordów z bazy
             $this->records = App::getDB()->select("books", [
                 "id",
                 "author",
@@ -35,24 +36,28 @@ class BookListController {
     }
 
     public function action_bookListUser() {
-        $this->form->page = ParamUtils::getFromCleanURL(1, false, 'Błędne wywołanie aplikacji.');
+        // pobranie wybranej przez klienta strony
+        $this->pagination->page = ParamUtils::getFromCleanURL(1, false, 'Błędne wywołanie aplikacji.');
 
-        if (empty($this->form->page)) {$this->form->page = 1; }
+        // jeżeli nie została wybrana żadna strona ustaw 1
+        if (empty($this->pagination->page)) {$this->pagination->page = 1; }
 
-        if (!is_numeric($this->form->page)) {
+        if (!is_numeric($this->pagination->page)) {
             Utils::addErrorMessage("Strona nie jest liczbą.");
         }
         try {
+            // pobranie rekordów na jedną stronę
             $this->records = App::getDB()->select("books", [
                 "id",
                 "author",
                 "title",
                 "status",
             ], [
-                "LIMIT" => [($this->form->page-1) * $this->form->limit, $this->form->limit]
+                "LIMIT" => [($this->pagination->page-1) * $this->pagination->limit, $this->pagination->limit]
             ]);
 
-            $this->form->countRecords = App::getDB()->count("books");
+            // pobranie liczby rekordów z bazy
+            $this->pagination->countRecords = App::getDB()->count("books");
 
         } catch (\PDOException $exception) {
             Utils::addErrorMessage('Wystąpił błąd podczas pobierania rekordów');
@@ -60,19 +65,23 @@ class BookListController {
                 Utils::addErrorMessage($exception->getMessage());
         }
 
-        if($this->form->countRecords - $this->form->limit * ($this->form->page -1) > $this->form->limit) {
-            $this->form->oneMorePage = true;
+        // jeżeli kolejna strona jest dostępna ustaw oneMorePage na true
+        if($this->pagination->countRecords - $this->pagination->limit * ($this->pagination->page -1) > $this->pagination->limit) {
+            $this->pagination->oneMorePage = true;
 
-            if($this->form->countRecords - $this->form->limit * ($this->form->page -1) > $this->form->limit * 2) {
-                $this->form->twoMorePages = true;
+            // jeżeli kolejna strona jest dostępna ustaw twoMorePage na true
+            if($this->pagination->countRecords - $this->pagination->limit * ($this->pagination->page -1) > $this->pagination->limit * 2) {
+                $this->pagination->twoMorePages = true;
             }
         }
         $this->generateViewUser();
     }
 
     public function action_bookRentUser() {
+        // pobranie ID wypożyczanej książki
         $this->form->id = ParamUtils::getFromCleanURL(1, true, 'Błędne wywołanie aplikacji');
 
+        // zmiana statusu książki w bazie
         App::getDB()->update("books", [
             "status" => "wypożyczona"
         ], [
@@ -87,24 +96,6 @@ class BookListController {
         App::getRouter()->forwardTo('bookListUser');
     }
 
-//    public function action_availableBooks() {
-//        try {
-//            $this->records = App::getDB()->select("books", [
-//                "id",
-//                "author",
-//                "title",
-//                "status",
-//            ], [
-//                "status" => "dostępna"
-//            ]);
-//        } catch (\PDOException $exception) {
-//            Utils::addErrorMessage('Wystąpił błąd podczas pobierania rekordów');
-//            if (App::getConf()->debug)
-//                Utils::addErrorMessage($exception->getMessage());
-//        }
-//        $this->generateViewUser();
-//    }
-
     public function generateView() {
         App::getSmarty()->assign('books', $this->records);  // lista rekordów z bazy danych
         App::getSmarty()->display('BookList.tpl');
@@ -113,10 +104,10 @@ class BookListController {
     public function generateViewUser() {
         App::getSmarty()->assign('books', $this->records);  // lista rekordów z bazy danych
         App::getSmarty()->assign('id', $_SESSION['id']);
-        App::getSmarty()->assign('page', $this->form->page);
-        App::getSmarty()->assign('limit', $this->form->countRecords / $this->form->limit);
-        App::getSmarty()->assign("oneMorePage", $this->form->oneMorePage);
-        App::getSmarty()->assign("twoMorePages", $this->form->twoMorePages);
+        App::getSmarty()->assign('page', $this->pagination->page);
+        App::getSmarty()->assign('limit', $this->pagination->countRecords / $this->pagination->limit);
+        App::getSmarty()->assign("oneMorePage", $this->pagination->oneMorePage);
+        App::getSmarty()->assign("twoMorePages", $this->pagination->twoMorePages);
         App::getSmarty()->display('BookListUser.tpl');
     }
 }

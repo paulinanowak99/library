@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f988c227-3fd3-43a8-99de-7dcbf738c4a0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/forms/PageForm.class.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/BookListController.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/BookListController.class.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/BookListUser.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/BookListUser.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/templates_c/60b70af8a52fd4bafb04f85717fd0caa0502e9ce_0.file.BookListUser.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/templates_c/60b70af8a52fd4bafb04f85717fd0caa0502e9ce_0.file.BookListUser.tpl.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +58,7 @@
       <workItem from="1642405429456" duration="23057000" />
       <workItem from="1642599085069" duration="152000" />
       <workItem from="1642599240358" duration="23721000" />
-      <workItem from="1650313858908" duration="16743000" />
+      <workItem from="1650313858908" duration="18079000" />
     </task>
     <task id="LOCAL-00001" summary="projekt biblioteki (5 semestr)">
       <created>1650314793464</created>
@@ -84,7 +81,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650401149419</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="dodanie stronicowania w widoku listy książek usera">
+      <created>1650525529985</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1650525529985</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -94,6 +98,7 @@
     <MESSAGE value="projekt biblioteki (5 semestr)" />
     <MESSAGE value="dodanie rejestracji" />
     <MESSAGE value="dodanie stronicowania prostego w liście książek dla usera" />
-    <option name="LAST_COMMIT_MESSAGE" value="dodanie stronicowania prostego w liście książek dla usera" />
+    <MESSAGE value="dodanie stronicowania w widoku listy książek usera" />
+    <option name="LAST_COMMIT_MESSAGE" value="dodanie stronicowania w widoku listy książek usera" />
   </component>
 </project>
