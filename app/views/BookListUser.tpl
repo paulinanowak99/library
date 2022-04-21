@@ -64,15 +64,27 @@
             </div>
             <div align="center">
                 {if $page lte 1}
-                    <a href="{url action='bookListUser' page=$page-1}" class="button primary small disabled"><</a>
+                    <a href="{url action='bookListUser' page=$page-1}" class="button small disabled"><</a>
                 {else}
-                    <a href="{url action='bookListUser' page=$page-1}" class="button primary small"><</a>
+                    <a href="{url action='bookListUser' page=$page-1}" class="button small"><</a>
                 {/if}
+                <a href="{url action='bookListUser' page=$page}" class="button primary small">{$page}</a>
+
+                {if $oneMorePage}
+                    <a href="{url action='bookListUser' page=$page+1}" class="button small">{$page+1}</a>
+                {/if}
+
+                {if $twoMorePages}
+                    <a href="{url action='bookListUser' page=$page+2}" class="button small">{$page+2}</a>
+                {/if}
+
                 {if $limit gt $page}
-                    <a href="{url action='bookListUser' page=$page+1}" class="button primary small">></a>
+                    <a href="{url action='bookListUser' page=$page+1}" class="button small">></a>
                 {else}
-                    <a href="{url action='bookListUser' page=$page+1}" class="button primary small disabled">></a>
+                    <a href="{url action='bookListUser' page=$page+1}" class="button small disabled">></a>
                 {/if}
+
+
             </div>
         </div>
     <div>

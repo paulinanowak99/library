@@ -4,15 +4,18 @@
 namespace app\controllers;
 
 
+use app\forms\PageForm;
 use core\App;
 use core\ParamUtils;
 use core\Utils;
 
 class BookListController {
     private $records; //rekordy pobrane z bazy
-    private $page;
-    private $limit = 4;
-    private $countRecords;
+    private $form;
+
+    public function __construct(){
+        $this->form = new PageForm();
+    }
 
     public function action_bookList() {
         try {
@@ -32,11 +35,11 @@ class BookListController {
     }
 
     public function action_bookListUser() {
-        $this->page = ParamUtils::getFromCleanURL(1, false, 'Błędne wywołanie aplikacji.');
+        $this->form->page = ParamUtils::getFromCleanURL(1, false, 'Błędne wywołanie aplikacji.');
 
-        if (empty($this->page)) {$this->page = 1; }
+        if (empty($this->form->page)) {$this->form->page = 1; }
 
-        if (!is_numeric($this->page)) {
+        if (!is_numeric($this->form->page)) {
             Utils::addErrorMessage("Strona nie jest liczbą.");
         }
         try {
@@ -46,15 +49,23 @@ class BookListController {
                 "title",
                 "status",
             ], [
-                "LIMIT" => [($this->page-1) * $this->limit, $this->limit]
+                "LIMIT" => [($this->form->page-1) * $this->form->limit, $this->form->limit]
             ]);
 
-            $this->countRecords = App::getDB()->count("books");
+            $this->form->countRecords = App::getDB()->count("books");
 
         } catch (\PDOException $exception) {
             Utils::addErrorMessage('Wystąpił błąd podczas pobierania rekordów');
             if (App::getConf()->debug)
                 Utils::addErrorMessage($exception->getMessage());
+        }
+
+        if($this->form->countRecords - $this->form->limit * ($this->form->page -1) > $this->form->limit) {
+            $this->form->oneMorePage = true;
+
+            if($this->form->countRecords - $this->form->limit * ($this->form->page -1) > $this->form->limit * 2) {
+                $this->form->twoMorePages = true;
+            }
         }
         $this->generateViewUser();
     }
@@ -102,8 +113,10 @@ class BookListController {
     public function generateViewUser() {
         App::getSmarty()->assign('books', $this->records);  // lista rekordów z bazy danych
         App::getSmarty()->assign('id', $_SESSION['id']);
-        App::getSmarty()->assign('page', $this->page);
-        App::getSmarty()->assign('limit', $this->countRecords / $this->limit);
+        App::getSmarty()->assign('page', $this->form->page);
+        App::getSmarty()->assign('limit', $this->form->countRecords / $this->form->limit);
+        App::getSmarty()->assign("oneMorePage", $this->form->oneMorePage);
+        App::getSmarty()->assign("twoMorePages", $this->form->twoMorePages);
         App::getSmarty()->display('BookListUser.tpl');
     }
 }
