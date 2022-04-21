@@ -1,26 +1,27 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-04-20 22:55:16
+/* Smarty version 3.1.34-dev-7, created on 2022-04-21 21:37:32
   from 'C:\xampp\htdocs\library\app\views\BookListUser.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_62607334203bf9_85789320',
+  'unifunc' => 'content_6261b27c00eb61_56783414',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '60b70af8a52fd4bafb04f85717fd0caa0502e9ce' => 
     array (
       0 => 'C:\\xampp\\htdocs\\library\\app\\views\\BookListUser.tpl',
-      1 => 1650488114,
+      1 => 1650569847,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
+    'file:TableBookListUser.tpl' => 1,
   ),
 ),false)) {
-function content_62607334203bf9_85789320 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6261b27c00eb61_56783414 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE HTML>
 <html>
 <head>
@@ -29,6 +30,10 @@ function content_62607334203bf9_85789320 (Smarty_Internal_Template $_smarty_tpl)
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_url;?>
 /style/assets/css/main.css" />
+    <?php echo '<script'; ?>
+ type="text/javascript" src="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_url;?>
+/js/functions.js"><?php echo '</script'; ?>
+>
     <noscript><link rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_url;?>
 /style/assets/css/noscript.css" /></noscript>
 </head>
@@ -45,8 +50,8 @@ function content_62607334203bf9_85789320 (Smarty_Internal_Template $_smarty_tpl)
     <!-- Nav -->
     <nav id="nav">
         <ul class="links">
-            <li class="active"><a href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
-bookListUser">Książki</a></li>
+            <li class="active"><a href="<?php echo call_user_func_array( $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['url'][0], array( array('action'=>'bookListUser','page'=>1),$_smarty_tpl ) );?>
+">Książki</a></li>
             <li><a href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
 rentsListUser">Moje wypożyczenia</a></li>
         </ul>
@@ -58,71 +63,18 @@ logout" class="button primary">Wyloguj</a>
 
     <div id="main">
         <div class="align-left">
+            <form id="search-form" onsubmit="ajaxPostForm('search-form', '<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
+bookListUserPart', 'table'); return false;">
+                <legend><b>Wyszukiwanie</b></legend>
+                    <input type="text" style="width: 30%; display: inline-block" placeholder="tytuł" name="sf_title" value="<?php echo $_smarty_tpl->tpl_vars['searchForm']->value->title;?>
+" />
+                    <button type="submit" class="primary small">Filtruj</button>
+            </form>
         <!-- <a href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
 availableBooks" class="button primary">Dostępne książki</a> -->
-            <div class="table-wrapper">
-                <table id="tab_users">
-                    <thead>
-                    <tr>
-                        <th>Autor</th>
-                        <th>Tytuł</th>
-                        <th>Status</th>
-                        <th>Akcje</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['books']->value, 'b');
-$_smarty_tpl->tpl_vars['b']->do_else = true;
-if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['b']->value) {
-$_smarty_tpl->tpl_vars['b']->do_else = false;
+            <div class="table-wrapper" id="table">
+                <?php $_smarty_tpl->_subTemplateRender("file:TableBookListUser.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
-                        <tr><td><?php echo $_smarty_tpl->tpl_vars['b']->value["author"];?>
-</td><td><?php echo $_smarty_tpl->tpl_vars['b']->value["title"];?>
-</td><td><?php echo $_smarty_tpl->tpl_vars['b']->value["status"];?>
-</td><td><?php if ($_smarty_tpl->tpl_vars['b']->value["status"] == "dostępna") {?><a href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_url;?>
-bookRentUser/<?php echo $_smarty_tpl->tpl_vars['b']->value['id'];?>
-" class="button primary small">Wypożycz</a><?php }
-if ($_smarty_tpl->tpl_vars['b']->value["status"] == "wypożyczona") {?><a class="button primary small disabled">Wypożycz</a><?php }?></td></tr>
-                    <?php
-}
-$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
-                    </tbody>
-                </table>
-            </div>
-            <div align="center">
-                <?php if ($_smarty_tpl->tpl_vars['page']->value <= 1) {?>
-                    <a href="<?php echo call_user_func_array( $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['url'][0], array( array('action'=>'bookListUser','page'=>$_smarty_tpl->tpl_vars['page']->value-1),$_smarty_tpl ) );?>
-" class="button small disabled"><</a>
-                <?php } else { ?>
-                    <a href="<?php echo call_user_func_array( $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['url'][0], array( array('action'=>'bookListUser','page'=>$_smarty_tpl->tpl_vars['page']->value-1),$_smarty_tpl ) );?>
-" class="button small"><</a>
-                <?php }?>
-                <a href="<?php echo call_user_func_array( $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['url'][0], array( array('action'=>'bookListUser','page'=>$_smarty_tpl->tpl_vars['page']->value),$_smarty_tpl ) );?>
-" class="button primary small"><?php echo $_smarty_tpl->tpl_vars['page']->value;?>
-</a>
-
-                <?php if ($_smarty_tpl->tpl_vars['oneMorePage']->value) {?>
-                    <a href="<?php echo call_user_func_array( $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['url'][0], array( array('action'=>'bookListUser','page'=>$_smarty_tpl->tpl_vars['page']->value+1),$_smarty_tpl ) );?>
-" class="button small"><?php echo $_smarty_tpl->tpl_vars['page']->value+1;?>
-</a>
-                <?php }?>
-
-                <?php if ($_smarty_tpl->tpl_vars['twoMorePages']->value) {?>
-                    <a href="<?php echo call_user_func_array( $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['url'][0], array( array('action'=>'bookListUser','page'=>$_smarty_tpl->tpl_vars['page']->value+2),$_smarty_tpl ) );?>
-" class="button small"><?php echo $_smarty_tpl->tpl_vars['page']->value+2;?>
-</a>
-                <?php }?>
-
-                <?php if ($_smarty_tpl->tpl_vars['limit']->value > $_smarty_tpl->tpl_vars['page']->value) {?>
-                    <a href="<?php echo call_user_func_array( $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['url'][0], array( array('action'=>'bookListUser','page'=>$_smarty_tpl->tpl_vars['page']->value+1),$_smarty_tpl ) );?>
-" class="button small">></a>
-                <?php } else { ?>
-                    <a href="<?php echo call_user_func_array( $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['url'][0], array( array('action'=>'bookListUser','page'=>$_smarty_tpl->tpl_vars['page']->value+1),$_smarty_tpl ) );?>
-" class="button small disabled">></a>
-                <?php }?>
-
-
             </div>
         </div>
     <div>
@@ -154,6 +106,26 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 </div>
 
     <!-- Scripts -->
+<?php echo '<script'; ?>
+>
+    function ajaxPostForm(id_form,url,id_to_reload)
+    {
+        console.log("1");
+        var form = document.getElementById(id_form);
+        var formData = new FormData(form);
+        var xmlHttp = new XMLHttpRequest();
+        console.log("2");
+        xmlHttp.onreadystatechange = function() {
+            if(xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                document.getElementById(id_to_reload).innerHTML = xmlHttp.responseText;
+            }
+        }
+        xmlHttp.open("POST", url, true);
+        xmlHttp.send(formData);
+        console.log("3");
+    }
+<?php echo '</script'; ?>
+>
     <?php echo '<script'; ?>
  src="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_url;?>
 /style/assets/js/jquery.min.js"><?php echo '</script'; ?>

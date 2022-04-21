@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="{$conf->action_url}/style/assets/css/main.css" />
+    <script type="text/javascript" src="{$conf->action_url}/js/functions.js"></script>
     <noscript><link rel="stylesheet" href="{$conf->action_url}/style/assets/css/noscript.css" /></noscript>
 </head>
 
@@ -20,7 +21,7 @@
     <!-- Nav -->
     <nav id="nav">
         <ul class="links">
-            <li class="active"><a href="{$conf->action_root}bookListUser">Książki</a></li>
+            <li class="active"><a href="{url action='bookListUser' page=1}">Książki</a></li>
             <li><a href="{$conf->action_root}rentsListUser">Moje wypożyczenia</a></li>
         </ul>
         <ul class="icons">
@@ -30,61 +31,14 @@
 
     <div id="main">
         <div class="align-left">
+            <form id="search-form" onsubmit="ajaxPostForm('search-form', '{$conf->action_root}bookListUserPart', 'table'); return false;">
+                <legend><b>Wyszukiwanie</b></legend>
+                    <input type="text" style="width: 30%; display: inline-block" placeholder="tytuł" name="sf_title" value="{$searchForm->title}" />
+                    <button type="submit" class="primary small">Filtruj</button>
+            </form>
         <!-- <a href="{$conf->action_root}availableBooks" class="button primary">Dostępne książki</a> -->
-            <div class="table-wrapper">
-                <table id="tab_users">
-                    <thead>
-                    <tr>
-                        <th>Autor</th>
-                        <th>Tytuł</th>
-                        <th>Status</th>
-                        <th>Akcje</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {foreach $books as $b}
-                        {strip}
-                            <tr>
-                                <td>{$b["author"]}</td>
-                                <td>{$b["title"]}</td>
-                                <td>{$b["status"]}</td>
-                                <td>
-                                    {if $b["status"] eq "dostępna"}
-                                    <a href="{$conf->action_url}bookRentUser/{$b['id']}" class="button primary small">Wypożycz</a>
-                                    {/if}
-                                    {if $b["status"] eq "wypożyczona"}
-                                        <a class="button primary small disabled">Wypożycz</a>
-                                    {/if}
-                                </td>
-                            </tr>
-                        {/strip}
-                    {/foreach}
-                    </tbody>
-                </table>
-            </div>
-            <div align="center">
-                {if $page lte 1}
-                    <a href="{url action='bookListUser' page=$page-1}" class="button small disabled"><</a>
-                {else}
-                    <a href="{url action='bookListUser' page=$page-1}" class="button small"><</a>
-                {/if}
-                <a href="{url action='bookListUser' page=$page}" class="button primary small">{$page}</a>
-
-                {if $oneMorePage}
-                    <a href="{url action='bookListUser' page=$page+1}" class="button small">{$page+1}</a>
-                {/if}
-
-                {if $twoMorePages}
-                    <a href="{url action='bookListUser' page=$page+2}" class="button small">{$page+2}</a>
-                {/if}
-
-                {if $limit gt $page}
-                    <a href="{url action='bookListUser' page=$page+1}" class="button small">></a>
-                {else}
-                    <a href="{url action='bookListUser' page=$page+1}" class="button small disabled">></a>
-                {/if}
-
-
+            <div class="table-wrapper" id="table">
+                {include file="TableBookListUser.tpl"}
             </div>
         </div>
     <div>
@@ -110,6 +64,24 @@
 </div>
 
     <!-- Scripts -->
+<script>
+    function ajaxPostForm(id_form,url,id_to_reload)
+    {
+        console.log("1");
+        var form = document.getElementById(id_form);
+        var formData = new FormData(form);
+        var xmlHttp = new XMLHttpRequest();
+        console.log("2");
+        xmlHttp.onreadystatechange = function() {
+            if(xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                document.getElementById(id_to_reload).innerHTML = xmlHttp.responseText;
+            }
+        }
+        xmlHttp.open("POST", url, true);
+        xmlHttp.send(formData);
+        console.log("3");
+    }
+</script>
     <script src="{$conf->action_url}/style/assets/js/jquery.min.js"></script>
     <script src="{$conf->action_url}/style/assets/js/jquery.scrollex.min.js"></script>
     <script src="{$conf->action_url}/style/assets/js/jquery.scrolly.min.js"></script>

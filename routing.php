@@ -31,5 +31,6 @@ Utils::addRoute('rentDelete', 'RentsController', ['admin']);
 Utils::addRoute('rentsListUser', 'RentsController', ['user']);
 
 Utils::addRoute('bookListUser', 'BookListController', ['user']);
+Utils::addRoute('bookListUserPart', 'BookListController', ['user']);
 Utils::addRoute('bookRentUser', 'BookListController', ['user']);
 // Utils::addRoute('availableBooks', 'BookListController', ['user']);
