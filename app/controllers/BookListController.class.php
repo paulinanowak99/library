@@ -14,6 +14,7 @@ class BookListController {
     private $records;           // rekordy pobrane z bazy
     private $pagination;        // dane do paginacji
     private $form;              // dane zz formularza wyszukiwania
+    private $searchTitle;
 
     public function __construct(){
         $this->pagination = new PageForm();
@@ -41,6 +42,8 @@ class BookListController {
     public function action_bookListUser() {
         // pobranie wybranej przez klienta strony
         $this->pagination->page = ParamUtils::getFromCleanURL(1, false, 'Błędne wywołanie aplikacji.');
+        $this->form->title = ParamUtils::getFromRequest('sf_title');
+        $this->form->title = ParamUtils::getFromCleanURL(2, false, 'Błędne wywołanie aplikacji.');
 
         // jeżeli nie została wybrana żadna strona ustaw 1
         if (empty($this->pagination->page)) {$this->pagination->page = 1; }
@@ -48,6 +51,13 @@ class BookListController {
         if (!is_numeric($this->pagination->page)) {
             Utils::addErrorMessage("Strona nie jest liczbą.");
         }
+
+        $search_params = []; //przygotowanie pustej struktury (aby była dostępna nawet gdy nie będzie zawierała wierszy)
+        if (isset($this->form->title) && strlen($this->form->title) > 0) {
+            $search_params['title[~]'] = $this->form->title . '%'; // dodanie symbolu % zastępuje dowolny ciąg znaków na końcu
+        }
+
+        $where = &$search_params;
         try {
             // pobranie rekordów na jedną stronę
             $this->records = App::getDB()->select("books", [
@@ -55,7 +65,7 @@ class BookListController {
                 "author",
                 "title",
                 "status",
-            ], [
+            ], $where, [
                 "LIMIT" => [($this->pagination->page-1) * $this->pagination->limit, $this->pagination->limit]
             ]);
 
@@ -67,6 +77,9 @@ class BookListController {
             if (App::getConf()->debug)
                 Utils::addErrorMessage($exception->getMessage());
         }
+
+        $this->pagination->countRecords = count($this->records);
+        $this->records = array_slice($this->records, ($this->pagination->page-1) * $this->pagination->limit, $this->pagination->limit);
 
         // jeżeli kolejna strona jest dostępna ustaw oneMorePage na true
         if($this->pagination->countRecords - $this->pagination->limit * ($this->pagination->page -1) > $this->pagination->limit) {
@@ -112,8 +125,6 @@ class BookListController {
         }
 
         $where = &$search_params;
-        //dodanie frazy sortującej po nazwisku
-        $where ["ORDER"] = "title";
 
         //wykonanie zapytania
         try {
@@ -122,12 +133,17 @@ class BookListController {
                 "author",
                 "title",
                 "status",
-            ], $where);
+            ], $where, [
+                "LIMIT" => [$this->pagination->limit]
+            ]);
         } catch (\PDOException $e) {
             Utils::addErrorMessage('Wystąpił błąd podczas pobierania rekordów');
             if (App::getConf()->debug)
                 Utils::addErrorMessage($e->getMessage());
         }
+
+        $this->pagination->countRecords = count($this->records);
+        $this->records = array_slice($this->records, 0, $this->pagination->limit);
 
         // jeżeli kolejna strona jest dostępna ustaw oneMorePage na true
         if($this->pagination->countRecords - $this->pagination->limit * ($this->pagination->page -1) > $this->pagination->limit) {
@@ -139,6 +155,7 @@ class BookListController {
             }
         }
 
+        App::getSmarty()->assign('searchTitle', $this->form->title);
         App::getSmarty()->assign('page', $this->pagination->page);
         App::getSmarty()->assign('limit', $this->pagination->countRecords / $this->pagination->limit);
         App::getSmarty()->assign("oneMorePage", $this->pagination->oneMorePage);
@@ -155,6 +172,8 @@ class BookListController {
     }
 
     public function generateViewUser() {
+        App::getSmarty()->assign('searchForm', $this->form);
+        App::getSmarty()->assign('searchTitle', $this->form->title);
         App::getSmarty()->assign('books', $this->records);  // lista rekordów z bazy danych
         App::getSmarty()->assign('id', $_SESSION['id']);
         App::getSmarty()->assign('page', $this->pagination->page);

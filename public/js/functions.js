@@ -27,6 +27,18 @@ function ajaxPostForm(id_form,url,id_to_reload)
     console.log("3");
 }
 
+function initialRequest(url) {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() {
+        if (xmlHttp.readyState == XMLHttpRequest.DONE) {
+            console.log(xmlHttp.responseText);
+        }
+    }
+    xmlHttp.open("GET", "/library/public/bookListUserPart", true);
+    xmlHttp.send();
+    console.log("3");
+}
+
 // Funkcja wysyłająca dane formularza identyfkowanego przez 'id_form', do podanego adresu 'url'.
 // Po otrzymaniu odpowiedzi wywoływana jest funkcja użytkownika podana jako 'user_function'.
 function ajaxPostFormEx(id_form,url,user_function)
