@@ -4,9 +4,14 @@
     <list default="true" id="f988c227-3fd3-43a8-99de-7dcbf738c4a0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/BookListController.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/BookListController.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/RegistrationController.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/RegistrationController.class.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/forms/PageForm.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/forms/PageForm.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/forms/UserForm.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/forms/UserForm.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/BookListUser.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/BookListUser.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/RegistrationView.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/RegistrationView.tpl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/TableBookListUser.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/TableBookListUser.tpl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/functions.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/functions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/templates_c/60b70af8a52fd4bafb04f85717fd0caa0502e9ce_0.file.BookListUser.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/templates_c/60b70af8a52fd4bafb04f85717fd0caa0502e9ce_0.file.BookListUser.tpl.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +103,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650527717118</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="wstępna implementacja paginacja+ajax">
+      <created>1650662364993</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1650662364993</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -110,6 +122,7 @@
     <MESSAGE value="dodanie stronicowania prostego w liście książek dla usera" />
     <MESSAGE value="dodanie stronicowania w widoku listy książek usera" />
     <MESSAGE value="BookListController.class.phh - dodanie komentarzy do kodu" />
-    <option name="LAST_COMMIT_MESSAGE" value="BookListController.class.phh - dodanie komentarzy do kodu" />
+    <MESSAGE value="wstępna implementacja paginacja+ajax" />
+    <option name="LAST_COMMIT_MESSAGE" value="wstępna implementacja paginacja+ajax" />
   </component>
 </project>

@@ -39,38 +39,22 @@ class BookListController {
         $this->generateView();
     }
 
-    public function action_bookListUser() {
-        // pobranie wybranej przez klienta strony
-        $this->pagination->page = ParamUtils::getFromCleanURL(1, false, 'Błędne wywołanie aplikacji.');
-        $this->form->title = ParamUtils::getFromRequest('sf_title');
-        $this->form->title = ParamUtils::getFromCleanURL(2, false, 'Błędne wywołanie aplikacji.');
-
-        // jeżeli nie została wybrana żadna strona ustaw 1
-        if (empty($this->pagination->page)) {$this->pagination->page = 1; }
-
-        if (!is_numeric($this->pagination->page)) {
-            Utils::addErrorMessage("Strona nie jest liczbą.");
-        }
-
-        $search_params = []; //przygotowanie pustej struktury (aby była dostępna nawet gdy nie będzie zawierała wierszy)
-        if (isset($this->form->title) && strlen($this->form->title) > 0) {
-            $search_params['title[~]'] = $this->form->title . '%'; // dodanie symbolu % zastępuje dowolny ciąg znaków na końcu
-        }
-
-        $where = &$search_params;
+    public function loadData() {
+        //wykonanie zapytania
         try {
-            // pobranie rekordów na jedną stronę
             $this->records = App::getDB()->select("books", [
                 "id",
                 "author",
                 "title",
                 "status",
-            ], $where, [
+            ], [
+                "title[~]" => ($this->form->title . '%'),
                 "LIMIT" => [($this->pagination->page-1) * $this->pagination->limit, $this->pagination->limit]
             ]);
 
-            // pobranie liczby rekordów z bazy
-            $this->pagination->countRecords = App::getDB()->count("books");
+            $this->pagination->countRecords = App::getDB()->count("books", [
+                "title[~]" => ($this->form->title . '%')
+            ]);
 
         } catch (\PDOException $exception) {
             Utils::addErrorMessage('Wystąpił błąd podczas pobierania rekordów');
@@ -78,20 +62,22 @@ class BookListController {
                 Utils::addErrorMessage($exception->getMessage());
         }
 
-        $this->pagination->countRecords = count($this->records);
-        $this->records = array_slice($this->records, ($this->pagination->page-1) * $this->pagination->limit, $this->pagination->limit);
-
         // jeżeli kolejna strona jest dostępna ustaw oneMorePage na true
         if($this->pagination->countRecords - $this->pagination->limit * ($this->pagination->page -1) > $this->pagination->limit) {
             $this->pagination->oneMorePage = true;
-
-            // jeżeli kolejna strona jest dostępna ustaw twoMorePage na true
-            if($this->pagination->countRecords - $this->pagination->limit * ($this->pagination->page -1) > $this->pagination->limit * 2) {
-                $this->pagination->twoMorePages = true;
-            }
         }
 
+        if($this->pagination->page > 1) {
+            $this->pagination->previousPage = true;
+        }
 
+        $this->pagination->lastPage = ceil($this->pagination->countRecords / $this->pagination->limit);
+    }
+
+    public function action_bookListUser() {
+        $this->validate();
+        $this->loadData();
+        $this->assignToSmarty();
         $this->generateViewUser();
     }
 
@@ -114,54 +100,31 @@ class BookListController {
         App::getRouter()->forwardTo('bookListUser');
     }
 
-    public function action_bookListUserPart() {
+    public function validate() {
         $this->form->title = ParamUtils::getFromRequest('sf_title');
+        $this->pagination->page = ParamUtils::getFromRequest('page');
 
         if (empty($this->pagination->page)) {$this->pagination->page = 1; }
 
-        $search_params = []; //przygotowanie pustej struktury (aby była dostępna nawet gdy nie będzie zawierała wierszy)
-        if (isset($this->form->title) && strlen($this->form->title) > 0) {
-            $search_params['title[~]'] = $this->form->title . '%'; // dodanie symbolu % zastępuje dowolny ciąg znaków na końcu
+        if (!is_numeric($this->pagination->page)) {
+            Utils::addErrorMessage("Strona nie jest liczbą.");
         }
 
-        $where = &$search_params;
+        return !App::getMessages()->isError();
+    }
 
-        //wykonanie zapytania
-        try {
-            $this->records = App::getDB()->select("books", [
-                "id",
-                "author",
-                "title",
-                "status",
-            ], $where, [
-                "LIMIT" => [$this->pagination->limit]
-            ]);
-        } catch (\PDOException $e) {
-            Utils::addErrorMessage('Wystąpił błąd podczas pobierania rekordów');
-            if (App::getConf()->debug)
-                Utils::addErrorMessage($e->getMessage());
-        }
-
-        $this->pagination->countRecords = count($this->records);
-        $this->records = array_slice($this->records, 0, $this->pagination->limit);
-
-        // jeżeli kolejna strona jest dostępna ustaw oneMorePage na true
-        if($this->pagination->countRecords - $this->pagination->limit * ($this->pagination->page -1) > $this->pagination->limit) {
-            $this->pagination->oneMorePage = true;
-
-            // jeżeli kolejna strona jest dostępna ustaw twoMorePage na true
-            if($this->pagination->countRecords - $this->pagination->limit * ($this->pagination->page -1) > $this->pagination->limit * 2) {
-                $this->pagination->twoMorePages = true;
-            }
-        }
+    public function action_bookListUserPart() {
+        $this->validate();
+        $this->loadData();
 
         App::getSmarty()->assign('searchTitle', $this->form->title);
         App::getSmarty()->assign('page', $this->pagination->page);
         App::getSmarty()->assign('limit', $this->pagination->countRecords / $this->pagination->limit);
         App::getSmarty()->assign("oneMorePage", $this->pagination->oneMorePage);
-        App::getSmarty()->assign("twoMorePages", $this->pagination->twoMorePages);
+        App::getSmarty()->assign("lastPage", $this->pagination->lastPage);
         App::getSmarty()->assign('searchForm', $this->form);
         App::getSmarty()->assign('books', $this->records);
+        App::getSmarty()->assign("previousPage", $this->pagination->previousPage);
         App::getSmarty()->display('TableBookListUser.tpl');
     }
 
@@ -172,6 +135,11 @@ class BookListController {
     }
 
     public function generateViewUser() {
+        App::getSmarty()->display('BookListUser.tpl');
+    }
+
+    public function assignToSmarty()
+    {
         App::getSmarty()->assign('searchForm', $this->form);
         App::getSmarty()->assign('searchTitle', $this->form->title);
         App::getSmarty()->assign('books', $this->records);  // lista rekordów z bazy danych
@@ -179,7 +147,7 @@ class BookListController {
         App::getSmarty()->assign('page', $this->pagination->page);
         App::getSmarty()->assign('limit', $this->pagination->countRecords / $this->pagination->limit);
         App::getSmarty()->assign("oneMorePage", $this->pagination->oneMorePage);
-        App::getSmarty()->assign("twoMorePages", $this->pagination->twoMorePages);
-        App::getSmarty()->display('BookListUser.tpl');
+        App::getSmarty()->assign("previousPage", $this->pagination->previousPage);
+        App::getSmarty()->assign("lastPage", $this->pagination->lastPage);
     }
 }

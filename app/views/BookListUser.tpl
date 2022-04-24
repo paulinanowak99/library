@@ -21,7 +21,7 @@
     <!-- Nav -->
     <nav id="nav">
         <ul class="links">
-            <li class="active"><a href="{url action='bookListUser' page=1}">Książki</a></li>
+            <li class="active"><a href="{url action='bookListUser'}">Książki</a></li>
             <li><a href="{$conf->action_root}rentsListUser">Moje wypożyczenia</a></li>
         </ul>
         <ul class="icons">
@@ -65,22 +65,6 @@
 
     <!-- Scripts -->
 <script>
-    function ajaxPostForm(id_form,url,id_to_reload)
-    {
-        console.log("1");
-        var form = document.getElementById(id_form);
-        var formData = new FormData(form);
-        var xmlHttp = new XMLHttpRequest();
-        console.log("2");
-        xmlHttp.onreadystatechange = function() {
-            if(xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-                document.getElementById(id_to_reload).innerHTML = xmlHttp.responseText;
-            }
-        }
-        xmlHttp.open("POST", url, true);
-        xmlHttp.send(formData);
-        console.log("3");
-    }
 </script>
     <script src="{$conf->action_url}/style/assets/js/jquery.min.js"></script>
     <script src="{$conf->action_url}/style/assets/js/jquery.scrollex.min.js"></script>

@@ -8,7 +8,8 @@ class PageForm {
     public $page;
     public $limit = 2;
     public $countRecords;
+    public $previousPage = false;
     public $oneMorePage = false;
-    public $twoMorePages = false;
+    public $lastPage;
 
 }

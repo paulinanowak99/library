@@ -9,6 +9,7 @@ class UserForm {
     public $login;
     public $password;
     public $role;
+    public $email;
     public $forward;
 
 }

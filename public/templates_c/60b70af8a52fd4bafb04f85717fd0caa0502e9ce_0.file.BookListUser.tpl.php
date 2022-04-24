@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-04-21 21:37:32
+/* Smarty version 3.1.34-dev-7, created on 2022-04-23 10:42:46
   from 'C:\xampp\htdocs\library\app\views\BookListUser.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_6261b27c00eb61_56783414',
+  'unifunc' => 'content_6263bc06d73998_28945504',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '60b70af8a52fd4bafb04f85717fd0caa0502e9ce' => 
     array (
       0 => 'C:\\xampp\\htdocs\\library\\app\\views\\BookListUser.tpl',
-      1 => 1650569847,
+      1 => 1650703348,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:TableBookListUser.tpl' => 1,
   ),
 ),false)) {
-function content_6261b27c00eb61_56783414 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6263bc06d73998_28945504 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE HTML>
 <html>
 <head>
@@ -50,7 +50,7 @@ function content_6261b27c00eb61_56783414 (Smarty_Internal_Template $_smarty_tpl)
     <!-- Nav -->
     <nav id="nav">
         <ul class="links">
-            <li class="active"><a href="<?php echo call_user_func_array( $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['url'][0], array( array('action'=>'bookListUser','page'=>1),$_smarty_tpl ) );?>
+            <li class="active"><a href="<?php echo call_user_func_array( $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['url'][0], array( array('action'=>'bookListUser'),$_smarty_tpl ) );?>
 ">Książki</a></li>
             <li><a href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
 rentsListUser">Moje wypożyczenia</a></li>
@@ -108,22 +108,6 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
     <!-- Scripts -->
 <?php echo '<script'; ?>
 >
-    function ajaxPostForm(id_form,url,id_to_reload)
-    {
-        console.log("1");
-        var form = document.getElementById(id_form);
-        var formData = new FormData(form);
-        var xmlHttp = new XMLHttpRequest();
-        console.log("2");
-        xmlHttp.onreadystatechange = function() {
-            if(xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-                document.getElementById(id_to_reload).innerHTML = xmlHttp.responseText;
-            }
-        }
-        xmlHttp.open("POST", url, true);
-        xmlHttp.send(formData);
-        console.log("3");
-    }
 <?php echo '</script'; ?>
 >
     <?php echo '<script'; ?>

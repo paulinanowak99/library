@@ -12,11 +12,9 @@ function confirmLink(link,message) {
 // Otrzymana odpowiedź zamienia zawartość elementu na stronie o identyfikatorze 'id_to_reload'.
 function ajaxPostForm(id_form,url,id_to_reload)
 {
-    console.log("1");
     var form = document.getElementById(id_form);
     var formData = new FormData(form);
     var xmlHttp = new XMLHttpRequest();
-    console.log("2");
     xmlHttp.onreadystatechange = function() {
         if(xmlHttp.readyState == 4 && xmlHttp.status == 200) {
             document.getElementById(id_to_reload).innerHTML = xmlHttp.responseText;
@@ -24,19 +22,21 @@ function ajaxPostForm(id_form,url,id_to_reload)
     }
     xmlHttp.open("POST", url, true);
     xmlHttp.send(formData);
-    console.log("3");
+    console.log(formData);
 }
 
-function initialRequest(url) {
+function page(url, page, id_to_reload, sf_title) {
+    var param = new URLSearchParams();
+    param.append("page", page);
+    param.append("sf_title", sf_title);
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.onreadystatechange = function() {
-        if (xmlHttp.readyState == XMLHttpRequest.DONE) {
-            console.log(xmlHttp.responseText);
+    xmlHttp.onreadystatechange = function () {
+        if(xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+            document.getElementById(id_to_reload).innerHTML = xmlHttp.responseText;
         }
     }
-    xmlHttp.open("GET", "/library/public/bookListUserPart", true);
-    xmlHttp.send();
-    console.log("3");
+    xmlHttp.open("POST", url, true);
+    xmlHttp.send(param);
 }
 
 // Funkcja wysyłająca dane formularza identyfkowanego przez 'id_form', do podanego adresu 'url'.

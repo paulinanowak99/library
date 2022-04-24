@@ -28,24 +28,14 @@
         </tbody>
     </table>
  <div align="center">
-     {if $page lte 1}
-         <a href="{url action='bookListUser' page=$page-1 title=$searchTitle}" class="button small disabled"><</a>
-     {else}
-         <a href="{url action='bookListUser' page=$page-1 title=$searchTitle}" class="button small"><</a>
+     <button onclick="page('{$conf->action_root}bookListUserPart', '1', 'table', '{$searchTitle}')" class="small">Pierwsza strona</button>
+     {if $previousPage}
+     <button onclick="page('{$conf->action_root}bookListUserPart', '{$page-1}', 'table', '{$searchTitle}')" class="small">{$page-1}</button>
      {/if}
-     <a href="{url action='bookListUser' page=$page title=$searchTitle}" class="button primary small">{$page}</a>
+     <button onclick="page('{$conf->action_root}bookListUserPart', '{$page}', 'table', '{$searchTitle}')" class="small primary">{$page}</button>
 
      {if $oneMorePage}
-         <a href="{url action='bookListUser' page=$page+1 title=$searchTitle}" class="button small">{$page+1}</a>
+     <button onclick="page('{$conf->action_root}bookListUserPart', '{$page+1}', 'table', '{$searchTitle}')" class="small">{$page+1}</button>
      {/if}
-
-     {if $twoMorePages}
-         <a href="{url action='bookListUser' page=$page+2 title=$searchTitle}" class="button small">{$page+2}</a>
-     {/if}
-
-     {if $limit gt $page}
-         <a href="{url action='bookListUser' page=$page+1 title=$searchTitle}" class="button small">></a>
-     {else}
-         <a href="{url action='bookListUser' page=$page+1 title=$searchTitle}" class="button small disabled">></a>
-     {/if}
+     <button onclick="page('{$conf->action_root}bookListUserPart', '{$lastPage}', 'table', '{$searchTitle}')" class="small">Ostatnia strona</button>
  </div>

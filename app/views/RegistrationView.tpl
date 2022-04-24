@@ -34,6 +34,10 @@
                     <input id="login" type="text" placeholder="login" name="login">
                 </div>
                 <div class="col-4-xlarge">
+                    <label for="mail">Adres e-mail</label>
+                    <input id="mail" type="text" placeholder="e-mail" name="mail">
+                </div>
+                <div class="col-4-xlarge">
                     <label for="password">Hasło</label>
                     <input id="password" type="password" placeholder="hasło" name="password">
                 </div>

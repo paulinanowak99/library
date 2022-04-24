@@ -23,6 +23,7 @@ class RegistrationController {
         $this->form->firstname = ParamUtils::getFromRequest('firstname', true, 'Błędne wywołanie aplikacji.');
         $this->form->lastname = ParamUtils::getFromRequest('lastname', true, 'Błędne wywołanie aplikacji.');
         $this->form->login = ParamUtils::getFromRequest('login', true, 'Błędne wywołanie aplikacji.');
+        $this->form->email = ParamUtils::getFromRequest('mail', true, 'Błędne wywołanie aplikacji');
         $this->form->password = ParamUtils::getFromRequest('password', true, 'Błędne wywołanie aplikacji.');
 
         $repeatedPassword = ParamUtils::getFromRequest('repeatedPassword', true, 'Błędne wywołanie aplikacji.');
@@ -44,9 +45,9 @@ class RegistrationController {
         }
 
         try {
-            $records = App::getDB()->select("users", ['id'], ['login' => $this->form->login]);
+            $records = App::getDB()->count("users", ['login' => $this->form->login]);
 
-            if(empty($records)) {
+            if($records > 0) {
                 Utils::addErrorMessage("Taki użytkownik już istnieje.");
             }
         } catch (\PDOException $exception) {
@@ -56,6 +57,12 @@ class RegistrationController {
             }
         }
 
+        if(empty(trim($this->form->email))) {
+            Utils::addErrorMessage('Wprowadź adres e-mail.');
+        }
+        if(!preg_match('/^[a-z]+[0-9]*@[a-z]+\\.[a-z]+$/', $this->form->email)) {
+            Utils::addErrorMessage('Wprowadzono niepoprawny adres e-mail');
+        }
         if(empty(trim($this->form->password))) {
             Utils::addErrorMessage('Wprowadź hasło.');
         }
