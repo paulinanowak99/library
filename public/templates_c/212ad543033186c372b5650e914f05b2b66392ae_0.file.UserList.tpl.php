@@ -1,26 +1,27 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-01-23 08:25:43
+/* Smarty version 3.1.34-dev-7, created on 2022-04-24 23:17:08
   from 'C:\xampp\htdocs\library\app\views\UserList.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_61ed02f7be2842_73514242',
+  'unifunc' => 'content_6265be54e656f4_62183354',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '212ad543033186c372b5650e914f05b2b66392ae' => 
     array (
       0 => 'C:\\xampp\\htdocs\\library\\app\\views\\UserList.tpl',
-      1 => 1642922740,
+      1 => 1650834928,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
+    'file:TableUserList.tpl' => 1,
   ),
 ),false)) {
-function content_61ed02f7be2842_73514242 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6265be54e656f4_62183354 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE HTML>
 <html>
 <head>
@@ -29,6 +30,10 @@ function content_61ed02f7be2842_73514242 (Smarty_Internal_Template $_smarty_tpl)
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_url;?>
 /style/assets/css/main.css" />
+    <?php echo '<script'; ?>
+ type="text/javascript" src="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_url;?>
+/js/functions.js"><?php echo '</script'; ?>
+>
     <noscript><link rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_url;?>
 /style/assets/css/noscript.css" /></noscript>
 </head>
@@ -59,43 +64,22 @@ logout" class="button primary">Wyloguj</a>
     </nav>
 
     <div id="main">
-        <section class="align-left">
+        <div class="align-left">
+        <div class="align-right">
             <a href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
 userNew" class="button primary col-1-medium">Dodaj użytkownika</a> <br >
-        </section>
+        </div>
+            <form id="search-form" onsubmit="ajaxPostForm('search-form', '<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
+userListPart', 'table'); return false;">
+                <legend><b>Wyszukiwanie</b></legend>
+                <input type="text" style="width: 30%; display: inline-block" placeholder="nazwisko" name="sf_lastname" value="<?php echo $_smarty_tpl->tpl_vars['searchForm']->value->lastname;?>
+" />
+                <button type="submit" class="primary small">Filtruj</button>
+            </form>
 
-        <div class="table-wrapper">
-            <table id="tab_users">
-                <thead>
-                <tr>
-                    <th>Imię</th>
-                    <th>Nazwisko</th>
-                    <th>Login</th>
-                    <th>Rola</th>
-                    <th>Akcje</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['users']->value, 'u');
-$_smarty_tpl->tpl_vars['u']->do_else = true;
-if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['u']->value) {
-$_smarty_tpl->tpl_vars['u']->do_else = false;
+        <div class="table-wrapper" id="table">
+            <?php $_smarty_tpl->_subTemplateRender("file:TableUserList.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
-                    <tr><td><?php echo $_smarty_tpl->tpl_vars['u']->value["firstname"];?>
-</td><td><?php echo $_smarty_tpl->tpl_vars['u']->value["lastname"];?>
-</td><td><?php echo $_smarty_tpl->tpl_vars['u']->value["login"];?>
-</td><td><?php echo $_smarty_tpl->tpl_vars['u']->value["role"];?>
-</td><td><a href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_url;?>
-userEdit/<?php echo $_smarty_tpl->tpl_vars['u']->value['id'];?>
-" class="button primary small">Edytuj</a>&nbsp;<a href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_url;?>
-userDelete/<?php echo $_smarty_tpl->tpl_vars['u']->value['id'];?>
-" class="button primary small">Usuń</a></td></tr>
-                <?php
-}
-$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
-                </tbody>
-            </table>
         </div>
         <div>
             <?php if ($_smarty_tpl->tpl_vars['msgs']->value->isMessage()) {?>
@@ -115,6 +99,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                     </ul>
                 </div>
             <?php }?>
+        </div>
         </div>
     </div>
 

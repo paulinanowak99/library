@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-04-24 22:08:59
+/* Smarty version 3.1.34-dev-7, created on 2022-04-24 23:10:28
   from 'C:\xampp\htdocs\library\app\views\BookList.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_6265ae5b0ff107_74321408',
+  'unifunc' => 'content_6265bcc407c304_92628076',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '6ef682ce22d22f9dda557759e90a1fd9d456fcce' => 
     array (
       0 => 'C:\\xampp\\htdocs\\library\\app\\views\\BookList.tpl',
-      1 => 1650830930,
+      1 => 1650833105,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:TableBookList.tpl' => 1,
   ),
 ),false)) {
-function content_6265ae5b0ff107_74321408 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6265bcc407c304_92628076 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE HTML>
 <html>
 <head>
@@ -65,12 +65,10 @@ logout" class="button primary">Wyloguj</a>
 
     <div id="main">
         <div class="align-left">
-            <div style="text-align: right">
+            <div class="align-right">
             <a href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
 bookNew" class="button primary col-1-medium" style="text-align: right">Dodaj książkę</a> <br >
             </div>
-
-
 
             <form id="search-form" onsubmit="ajaxPostForm('search-form', '<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
 bookListPart', 'table'); return false;">

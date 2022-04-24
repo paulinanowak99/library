@@ -6,7 +6,7 @@ namespace app\forms;
 
 class PageForm {
     public $page;
-    public $limit = 2;
+    public $limit = 1;
     public $countRecords;
     public $previousPage = false;
     public $oneMorePage = false;

@@ -32,11 +32,9 @@
 
     <div id="main">
         <div class="align-left">
-            <div style="text-align: right">
+            <div class="align-right">
             <a href="{$conf->action_root}bookNew" class="button primary col-1-medium" style="text-align: right">Dodaj książkę</a> <br >
             </div>
-
-
 
             <form id="search-form" onsubmit="ajaxPostForm('search-form', '{$conf->action_root}bookListPart', 'table'); return false;">
                 <legend><b>Wyszukiwanie</b></legend>

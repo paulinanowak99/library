@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="{$conf->action_url}/style/assets/css/main.css" />
+    <script type="text/javascript" src="{$conf->action_url}/js/functions.js"></script>
     <noscript><link rel="stylesheet" href="{$conf->action_url}/style/assets/css/noscript.css" /></noscript>
 </head>
 
@@ -30,39 +31,18 @@
     </nav>
 
     <div id="main">
-        <section class="align-left">
+        <div class="align-left">
+        <div class="align-right">
             <a href="{$conf->action_root}userNew" class="button primary col-1-medium">Dodaj użytkownika</a> <br >
-        </section>
+        </div>
+            <form id="search-form" onsubmit="ajaxPostForm('search-form', '{$conf->action_root}userListPart', 'table'); return false;">
+                <legend><b>Wyszukiwanie</b></legend>
+                <input type="text" style="width: 30%; display: inline-block" placeholder="nazwisko" name="sf_lastname" value="{$searchForm->lastname}" />
+                <button type="submit" class="primary small">Filtruj</button>
+            </form>
 
-        <div class="table-wrapper">
-            <table id="tab_users">
-                <thead>
-                <tr>
-                    <th>Imię</th>
-                    <th>Nazwisko</th>
-                    <th>Login</th>
-                    <th>Rola</th>
-                    <th>Akcje</th>
-                </tr>
-                </thead>
-                <tbody>
-                {foreach $users as $u}
-                    {strip}
-                        <tr>
-                            <td>{$u["firstname"]}</td>
-                            <td>{$u["lastname"]}</td>
-                            <td>{$u["login"]}</td>
-                            <td>{$u["role"]}</td>
-                            <td>
-                                <a href="{$conf->action_url}userEdit/{$u['id']}" class="button primary small">Edytuj</a>
-                                &nbsp;
-                                <a href="{$conf->action_url}userDelete/{$u['id']}" class="button primary small">Usuń</a>
-                            </td>
-                        </tr>
-                    {/strip}
-                {/foreach}
-                </tbody>
-            </table>
+        <div class="table-wrapper" id="table">
+            {include file="TableUserList.tpl"}
         </div>
         <div>
             {if $msgs->isMessage()}
@@ -76,6 +56,7 @@
                     </ul>
                 </div>
             {/if}
+        </div>
         </div>
     </div>
 

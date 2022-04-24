@@ -9,6 +9,7 @@ App::getRouter()->setDefaultRoute('bookList'); #default action
 Utils::addRoute('hello', 'HelloCtrl');
 //Utils::addRoute('action_name', 'controller_class_name');
 Utils::addRoute('userList', 'UserListController', ['admin']);
+Utils::addRoute('userListPart', 'UserListController', ['admin']);
 Utils::addRoute('userNew', 'UserEditController', ['admin']);
 Utils::addRoute('userEdit', 'UserEditController', ['admin']);
 Utils::addRoute('userDelete', 'UserEditController', ['admin']);

@@ -4,7 +4,7 @@
 namespace app\controllers;
 
 
-use app\forms\BookSearchForm;
+use app\forms\BookForm;
 use app\forms\PageForm;
 use core\App;
 use core\ParamUtils;
@@ -17,7 +17,7 @@ class BookListController {
 
     public function __construct(){
         $this->pagination = new PageForm();
-        $this->form = new BookSearchForm();
+        $this->form = new BookForm();
     }
 
     public function action_bookList() {
@@ -64,7 +64,7 @@ class BookListController {
         App::getRouter()->forwardTo('bookListUser');
     }
 
-    public function validate() {
+    private function validate() {
         $this->form->title = ParamUtils::getFromRequest('sf_title');
         $this->pagination->page = ParamUtils::getFromRequest('page');
 
@@ -77,7 +77,7 @@ class BookListController {
         return !App::getMessages()->isError();
     }
 
-    public function loadData() {
+    private function loadData() {
         $this->validate();
         //wykonanie zapytania
         try {
@@ -113,7 +113,7 @@ class BookListController {
         $this->pagination->lastPage = ceil($this->pagination->countRecords / $this->pagination->limit);
     }
 
-    public function assignToSmarty() {
+    private function assignToSmarty() {
         App::getSmarty()->assign('searchForm', $this->form);
         App::getSmarty()->assign('searchTitle', $this->form->title);
         App::getSmarty()->assign('books', $this->records);  // lista rekordów z bazy danych
