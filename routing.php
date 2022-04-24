@@ -15,6 +15,7 @@ Utils::addRoute('userDelete', 'UserEditController', ['admin']);
 Utils::addRoute('userSave', 'UserEditController', ['admin']);
 
 Utils::addRoute('bookList', 'BookListController',['admin']);
+Utils::addRoute('bookListPart', 'bookListController',['admin']);
 Utils::addRoute('bookNew', 'BookEditController', ['admin']);
 Utils::addRoute('bookEdit', 'BookEditController', ['admin']);
 Utils::addRoute('bookDelete', 'BookEditController', ['admin']);

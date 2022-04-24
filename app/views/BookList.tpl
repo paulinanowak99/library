@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="{$conf->action_url}/style/assets/css/main.css" />
+    <script type="text/javascript" src="{$conf->action_url}/js/functions.js"></script>
     <noscript><link rel="stylesheet" href="{$conf->action_url}/style/assets/css/noscript.css" /></noscript>
 </head>
 
@@ -30,38 +31,23 @@
     </nav>
 
     <div id="main">
-        <section class="align-left">
-            <a href="{$conf->action_root}bookNew" class="button primary col-1-medium">Dodaj książkę</a> <br >
-        </section>
-
-            <div class="table-wrapper">
-                <table id="tab_users">
-                    <thead>
-                    <tr>
-                        <th>Autor</th>
-                        <th>Tytuł</th>
-                        <th>Status</th>
-                        <th>Akcje</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {foreach $books as $b}
-                        {strip}
-                            <tr>
-                                <td>{$b["author"]}</td>
-                                <td>{$b["title"]}</td>
-                                <td>{$b["status"]}</td>
-                                <td>
-                                    <a href="{$conf->action_url}bookEdit/{$b['id']}" class="button primary small">Edytuj</a>
-                                    &nbsp;
-                                    <a href="{$conf->action_url}bookDelete/{$b['id']}" class="button primary small">Usuń</a>
-                                </td>
-                            </tr>
-                        {/strip}
-                    {/foreach}
-                    </tbody>
-                </table>
+        <div class="align-left">
+            <div style="text-align: right">
+            <a href="{$conf->action_root}bookNew" class="button primary col-1-medium" style="text-align: right">Dodaj książkę</a> <br >
             </div>
+
+
+
+            <form id="search-form" onsubmit="ajaxPostForm('search-form', '{$conf->action_root}bookListPart', 'table'); return false;">
+                <legend><b>Wyszukiwanie</b></legend>
+                <input type="text" style="width: 30%; display: inline-block" placeholder="tytuł" name="sf_title" value="{$searchForm->title}" />
+                <button type="submit" class="primary small">Filtruj</button>
+            </form>
+
+            <div class="table-wrapper" id="table">
+                {include file="TableBookList.tpl"}
+            </div>
+        </div>
 <div>
 {if $msgs->isMessage()}
     <div class="messages bottom-margin">

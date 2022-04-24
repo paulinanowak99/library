@@ -14,7 +14,6 @@ class BookListController {
     private $records;           // rekordy pobrane z bazy
     private $pagination;        // dane do paginacji
     private $form;              // dane zz formularza wyszukiwania
-    private $searchTitle;
 
     public function __construct(){
         $this->pagination = new PageForm();
@@ -22,63 +21,28 @@ class BookListController {
     }
 
     public function action_bookList() {
-        try {
-            // wyciągnięcie wszystkich rekordów z bazy
-            $this->records = App::getDB()->select("books", [
-                "id",
-                "author",
-                "title",
-                "status",
-            ]);
-        } catch (\PDOException $exception) {
-            Utils::addErrorMessage('Wystąpił błąd podczas pobierania rekordów');
-            if (App::getConf()->debug)
-                Utils::addErrorMessage($exception->getMessage());
-        }
-
-        $this->generateView();
+        $this->loadData();
+        $this->assignToSmarty();
+        App::getSmarty()->display('BookList.tpl');
     }
 
-    public function loadData() {
-        //wykonanie zapytania
-        try {
-            $this->records = App::getDB()->select("books", [
-                "id",
-                "author",
-                "title",
-                "status",
-            ], [
-                "title[~]" => ($this->form->title . '%'),
-                "LIMIT" => [($this->pagination->page-1) * $this->pagination->limit, $this->pagination->limit]
-            ]);
-
-            $this->pagination->countRecords = App::getDB()->count("books", [
-                "title[~]" => ($this->form->title . '%')
-            ]);
-
-        } catch (\PDOException $exception) {
-            Utils::addErrorMessage('Wystąpił błąd podczas pobierania rekordów');
-            if (App::getConf()->debug)
-                Utils::addErrorMessage($exception->getMessage());
-        }
-
-        // jeżeli kolejna strona jest dostępna ustaw oneMorePage na true
-        if($this->pagination->countRecords - $this->pagination->limit * ($this->pagination->page -1) > $this->pagination->limit) {
-            $this->pagination->oneMorePage = true;
-        }
-
-        if($this->pagination->page > 1) {
-            $this->pagination->previousPage = true;
-        }
-
-        $this->pagination->lastPage = ceil($this->pagination->countRecords / $this->pagination->limit);
+    public function action_bookListPart() {
+        $this->loadData();
+        $this->assignToSmarty();
+        App::getSmarty()->display('TableBookList.tpl');
     }
 
     public function action_bookListUser() {
-        $this->validate();
         $this->loadData();
         $this->assignToSmarty();
-        $this->generateViewUser();
+        App::getSmarty()->display('BookListUser.tpl');
+    }
+
+    public function action_bookListUserPart() {
+        $this->validate();
+        $this->loadData();
+        $this->validate();
+        App::getSmarty()->display('TableBookListUser.tpl');
     }
 
     public function action_bookRentUser() {
@@ -113,33 +77,43 @@ class BookListController {
         return !App::getMessages()->isError();
     }
 
-    public function action_bookListUserPart() {
+    public function loadData() {
         $this->validate();
-        $this->loadData();
+        //wykonanie zapytania
+        try {
+            $this->records = App::getDB()->select("books", [
+                "id",
+                "author",
+                "title",
+                "status",
+            ], [
+                "title[~]" => ($this->form->title . '%'),
+                "LIMIT" => [($this->pagination->page-1) * $this->pagination->limit, $this->pagination->limit]
+            ]);
 
-        App::getSmarty()->assign('searchTitle', $this->form->title);
-        App::getSmarty()->assign('page', $this->pagination->page);
-        App::getSmarty()->assign('limit', $this->pagination->countRecords / $this->pagination->limit);
-        App::getSmarty()->assign("oneMorePage", $this->pagination->oneMorePage);
-        App::getSmarty()->assign("lastPage", $this->pagination->lastPage);
-        App::getSmarty()->assign('searchForm', $this->form);
-        App::getSmarty()->assign('books', $this->records);
-        App::getSmarty()->assign("previousPage", $this->pagination->previousPage);
-        App::getSmarty()->display('TableBookListUser.tpl');
+            $this->pagination->countRecords = App::getDB()->count("books", [
+                "title[~]" => ($this->form->title . '%')
+            ]);
+
+        } catch (\PDOException $exception) {
+            Utils::addErrorMessage('Wystąpił błąd podczas pobierania rekordów');
+            if (App::getConf()->debug)
+                Utils::addErrorMessage($exception->getMessage());
+        }
+
+        // jeżeli kolejna strona jest dostępna ustaw oneMorePage na true
+        if($this->pagination->countRecords - $this->pagination->limit * ($this->pagination->page -1) > $this->pagination->limit) {
+            $this->pagination->oneMorePage = true;
+        }
+
+        if($this->pagination->page > 1) {
+            $this->pagination->previousPage = true;
+        }
+
+        $this->pagination->lastPage = ceil($this->pagination->countRecords / $this->pagination->limit);
     }
 
-    public function generateView() {
-        App::getSmarty()->assign('books', $this->records);  // lista rekordów z bazy danych
-        App::getSmarty()->assign('id', $_SESSION['id']);
-        App::getSmarty()->display('BookList.tpl');
-    }
-
-    public function generateViewUser() {
-        App::getSmarty()->display('BookListUser.tpl');
-    }
-
-    public function assignToSmarty()
-    {
+    public function assignToSmarty() {
         App::getSmarty()->assign('searchForm', $this->form);
         App::getSmarty()->assign('searchTitle', $this->form->title);
         App::getSmarty()->assign('books', $this->records);  // lista rekordów z bazy danych
