@@ -45,6 +45,12 @@
                     <label for="role">Powtórz hasło</label>
                     <input id="repeatedPassword" type="text" placeholder="powtórz hasło" name="repeatedPassword">
                 </div>
+                <div class="col-4-xlarge">
+                    <label for="captcha">Przepisz kod z obrazka</label>
+                    <img src="{$conf->action_url}/captcha.php" alt="CAPTCHA" class="captcha-image">
+                    <br>
+                    <input type="text" style="margin-top: 5px; width: 170px; height: 30px; border: 1px solid black" id="captcha" name="captcha">
+                </div>
                 <div class="col-12">
                     <ul class="actions">
                         <li><input type="submit" value="Zarejestruj się" class="primary" /></li>

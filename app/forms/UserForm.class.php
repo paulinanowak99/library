@@ -11,5 +11,6 @@ class UserForm {
     public $role;
     public $email;
     public $forward;
+    public $captcha;
 
 }

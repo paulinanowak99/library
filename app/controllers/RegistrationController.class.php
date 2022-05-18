@@ -25,7 +25,7 @@ class RegistrationController {
         $this->form->login = ParamUtils::getFromRequest('login', true, 'Błędne wywołanie aplikacji.');
         $this->form->email = ParamUtils::getFromRequest('mail', true, 'Błędne wywołanie aplikacji');
         $this->form->password = ParamUtils::getFromRequest('password', true, 'Błędne wywołanie aplikacji.');
-
+        $this->form->captcha = ParamUtils::getFromRequest('captcha', true, 'Błędne wywołanie aplikacji.');
         $repeatedPassword = ParamUtils::getFromRequest('repeatedPassword', true, 'Błędne wywołanie aplikacji.');
 
 
@@ -71,6 +71,9 @@ class RegistrationController {
         }
         if(strcmp($this->form->password, $repeatedPassword)) {
             Utils::addErrorMessage('Hasła nie są takie same');
+        }
+        if ($this->form->captcha !== $_SESSION['captcha']) {
+            Utils::addErrorMessage("Błędna captcha");
         }
 
         if (App::getMessages()->isError()) {
