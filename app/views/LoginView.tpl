@@ -49,10 +49,15 @@
                     <input type="text" style="margin-top: 5px; width: 170px; height: 30px; border: 1px solid black" id="captcha" name="captcha">
                 </div>
                 {/if}
-                <div class="col-12">
+                <div class="col-8">
                     <ul class="actions">
                         <li><input type="submit" value="Zaloguj" class="primary" /></li>
                         <li><a class="button primary medium" href="{$conf->action_root}registration">Zarejestruj się</a></li>
+                    </ul>
+                </div>
+                <div class="col-4">
+                    <ul class="actions">
+                        <li><a class="button medium" href="{$conf->action_root}contactForm">Formularz kontaktowy</a></li>
                     </ul>
                 </div>
             </div>

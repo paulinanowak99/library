@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-05-18 07:55:39
+/* Smarty version 3.1.34-dev-7, created on 2022-05-18 18:22:45
   from 'C:\xampp\htdocs\library\app\views\LoginView.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_62848a5b7ec859_81751858',
+  'unifunc' => 'content_62851d559b0c37_94700873',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c2c823644aabbc9176080474b644e2dd31856f70' => 
     array (
       0 => 'C:\\xampp\\htdocs\\library\\app\\views\\LoginView.tpl',
-      1 => 1652853337,
+      1 => 1652890963,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_62848a5b7ec859_81751858 (Smarty_Internal_Template $_smarty_tpl) {
+function content_62851d559b0c37_94700873 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE HTML>
 <html>
 <head>
@@ -76,11 +76,17 @@ login" method="post">
                     <input type="text" style="margin-top: 5px; width: 170px; height: 30px; border: 1px solid black" id="captcha" name="captcha">
                 </div>
                 <?php }?>
-                <div class="col-12">
+                <div class="col-8">
                     <ul class="actions">
                         <li><input type="submit" value="Zaloguj" class="primary" /></li>
                         <li><a class="button primary medium" href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
 registration">Zarejestruj się</a></li>
+                    </ul>
+                </div>
+                <div class="col-4">
+                    <ul class="actions">
+                        <li><a class="button medium" href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
+contactForm">Formularz kontaktowy</a></li>
                     </ul>
                 </div>
             </div>

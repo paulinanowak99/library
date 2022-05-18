@@ -20,7 +20,7 @@
     <div id="main">
         <h2>Dodaj książkę</h2>
 
-        <form action="{$conf->action_root}bookSave" method="post">
+        <form action="{$conf->action_root}bookSave" method="POST">
             <div class="row gtr-uniform">
                 <div class="col-4-xlarge">
                     <label for="author">Autor</label>
@@ -32,7 +32,7 @@
                 </div>
                 <div class="col-12">
                     <ul class="actions">
-                        <li><input type="submit" value="Zapisz" class="primary" /></li>
+                        <li><input type="submit" value="Zapisz" name="submit" class="primary" /></li>
                         <li><a href="{$conf->action_root}bookList" class="button">Powrót</a></li>
                     </ul>
                 </div>
