@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="{$conf->action_url}/style/assets/css/main.css" />
     <noscript><link rel="stylesheet" href="{$conf->action_url}/style/assets/css/noscript.css" /></noscript>
+    <script src="{$conf->action_url}/ckeditor/ckeditor.js"></script>
 </head>
 
 <body class="is-preload">
@@ -35,7 +36,10 @@
                 </div>
                 <div class="col-12-xlarge">
                     <label for="message">Wiadomość</label>
-                    <textarea name="message" id="message" placeholder="Napisz swoją wiadomość" rows="6"></textarea>
+                    <textarea name="message" id="message" rows="6">Wprowadź treść wiadomości</textarea>
+                    <script>
+                        CKEDITOR.replace( 'message' );
+                    </script>
                 </div>
 
                 <div class="col-12">

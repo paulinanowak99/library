@@ -8,6 +8,9 @@ App::getRouter()->setDefaultRoute('bookList'); #default action
 
 Utils::addRoute('contactForm', 'ContactFormController');
 Utils::addRoute('contactFormSend', 'ContactFormController');
+Utils::addRoute('commentNew', 'CommentAddController');
+Utils::addRoute('commentSave', 'CommentAddController');
+Utils::addRoute('commentList', 'CommentListController');
 
 Utils::addRoute('hello', 'HelloCtrl');
 //Utils::addRoute('action_name', 'controller_class_name');

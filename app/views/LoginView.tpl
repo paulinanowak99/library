@@ -62,8 +62,6 @@
                 </div>
             </div>
         </form>
-
-        <div class="align-left">
             {if $msgs->isMessage()}
                 <div class="label">
                     <ul>
@@ -75,7 +73,6 @@
                     </ul>
                 </div>
             {/if}
-        </div>
     </div>
     </footer>
 

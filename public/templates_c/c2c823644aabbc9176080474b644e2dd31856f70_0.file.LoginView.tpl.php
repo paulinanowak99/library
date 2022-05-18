@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-05-18 18:22:45
+/* Smarty version 3.1.34-dev-7, created on 2022-05-18 22:52:15
   from 'C:\xampp\htdocs\library\app\views\LoginView.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_62851d559b0c37_94700873',
+  'unifunc' => 'content_62855c7fc84a83_51113164',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c2c823644aabbc9176080474b644e2dd31856f70' => 
     array (
       0 => 'C:\\xampp\\htdocs\\library\\app\\views\\LoginView.tpl',
-      1 => 1652890963,
+      1 => 1652907131,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_62851d559b0c37_94700873 (Smarty_Internal_Template $_smarty_tpl) {
+function content_62855c7fc84a83_51113164 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE HTML>
 <html>
 <head>
@@ -91,8 +91,6 @@ contactForm">Formularz kontaktowy</a></li>
                 </div>
             </div>
         </form>
-
-        <div class="align-left">
             <?php if ($_smarty_tpl->tpl_vars['msgs']->value->isMessage()) {?>
                 <div class="label">
                     <ul>
@@ -110,6 +108,10 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                     </ul>
                 </div>
             <?php }?>
+        <div>
+            <h2>Opinie biblioteki</h2>
+            <a class="button small" href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
+commentNew">Dodaj opinię</a>
         </div>
     </div>
     </footer>
