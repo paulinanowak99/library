@@ -20,7 +20,7 @@
     <div id="main">
         <div class="col-6">
         <h2>Opinie biblioteki</h2>
-        <a href="{$conf->action_root}login" class="button small">Powrót</a>
+        <a href="{$conf->action_root}commentList" class="button small">Powrót</a>
             <a class="button small" href="{$conf->action_root}commentNew">Dodaj opinię</a>
         </div>
 
