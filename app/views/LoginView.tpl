@@ -41,6 +41,14 @@
                     <label for="password">Hasło: </label>
                     <input type="password" name="password" id="password" />
                 </div>
+                {if $loginFailed gt 4}
+                <div class="col-6-xlarge">
+                    <label for="captcha">Przepisz kod z obrazka</label>
+                    <img src="{$conf->action_url}/captcha.php" alt="CAPTCHA" class="captcha-image">
+                    <br>
+                    <input type="text" style="margin-top: 5px; width: 170px; height: 30px; border: 1px solid black" id="captcha" name="captcha">
+                </div>
+                {/if}
                 <div class="col-12">
                     <ul class="actions">
                         <li><input type="submit" value="Zaloguj" class="primary" /></li>

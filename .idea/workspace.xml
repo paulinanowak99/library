@@ -2,16 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f988c227-3fd3-43a8-99de-7dcbf738c4a0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/views/TableUserList.tpl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/captcha.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/BookListController.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/BookListController.class.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/UserListController.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/UserListController.class.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/forms/BookSearchForm.class.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/BookList.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/BookList.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/UserList.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/UserList.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/templates_c/212ad543033186c372b5650e914f05b2b66392ae_0.file.UserList.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/templates_c/212ad543033186c372b5650e914f05b2b66392ae_0.file.UserList.tpl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/templates_c/6ef682ce22d22f9dda557759e90a1fd9d456fcce_0.file.BookList.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/templates_c/6ef682ce22d22f9dda557759e90a1fd9d456fcce_0.file.BookList.tpl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routing.php" beforeDir="false" afterPath="$PROJECT_DIR$/routing.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/LoginController.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/LoginController.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/forms/LoginForm.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/forms/LoginForm.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/LoginView.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/LoginView.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/TableUserList.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/TableUserList.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/templates_c/c2c823644aabbc9176080474b644e2dd31856f70_0.file.LoginView.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/templates_c/c2c823644aabbc9176080474b644e2dd31856f70_0.file.LoginView.tpl.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +39,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../php_09_ajax" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -50,6 +47,10 @@
       <recent name="C:\xampp\htdocs\library\app\views" />
       <recent name="C:\xampp\htdocs\library\app\views\templates" />
       <recent name="C:\xampp\htdocs\library\public\css" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\library\public" />
+      <recent name="C:\xampp\htdocs\library\app\views" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -67,6 +68,8 @@
       <workItem from="1642599085069" duration="152000" />
       <workItem from="1642599240358" duration="23721000" />
       <workItem from="1650313858908" duration="28676000" />
+      <workItem from="1652729020572" duration="48000" />
+      <workItem from="1652813276173" duration="7462000" />
     </task>
     <task id="LOCAL-00001" summary="projekt biblioteki (5 semestr)">
       <created>1650314793464</created>
@@ -124,7 +127,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650831628391</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="dodanie wyszukiwania i paginacji w pozostałych widokach">
+      <created>1650835401030</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1650835401030</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -139,6 +149,7 @@
     <MESSAGE value="wstępna implementacja paginacja+ajax" />
     <MESSAGE value="paginacja z ajaxem&#10;dodanie weryfikacji adresu e-mail" />
     <MESSAGE value="BookListController.class.php &#10;- dodanie wyszukiwania i paginacji w widoku admina&#10;- posprzątanie kodu" />
-    <option name="LAST_COMMIT_MESSAGE" value="BookListController.class.php &#10;- dodanie wyszukiwania i paginacji w widoku admina&#10;- posprzątanie kodu" />
+    <MESSAGE value="dodanie wyszukiwania i paginacji w pozostałych widokach" />
+    <option name="LAST_COMMIT_MESSAGE" value="dodanie wyszukiwania i paginacji w pozostałych widokach" />
   </component>
 </project>

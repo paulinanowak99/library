@@ -37,5 +37,4 @@
         <button onclick="page('{$conf->action_root}userListPart', '{$page+1}', 'table', '{$searchLastname}')" class="small">{$page+1}</button>
     {/if}
     <button onclick="page('{$conf->action_root}userListPart', '{$lastPage}', 'table', '{$searchLastname}')" class="small">Ostatnia strona</button>
-    {$lastPage}
 </div>

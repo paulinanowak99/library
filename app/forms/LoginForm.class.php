@@ -9,4 +9,5 @@ class LoginForm {
     public $login;
     public $password;
     public $role;
+    public $captcha;
 }

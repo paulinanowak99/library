@@ -18,9 +18,13 @@ class LoginController {
     }
 
     public function action_login() {
-        if($this->validate()) {
+        if (!isset($_SESSION["loginFailed"])) {
+            $_SESSION["loginFailed"] = 0;
+        }
 
+        if($this->validate()) {
             Utils::addErrorMessage('Poprawnie zalogowany do systemu');
+            $_SESSION['loginFailed'] = 0;
             App::getRouter()->redirectTo($this->form->forward);
         } else {
             $this->generateView();
@@ -39,6 +43,9 @@ class LoginController {
     public function validate() {
         $this->form->login = ParamUtils::getFromRequest('login');
         $this->form->password = ParamUtils::getFromRequest('password');
+        if ($_SESSION["loginFailed"] > 4) {
+            $this->form->captcha = ParamUtils::getFromRequest('captcha');
+        }
 
         //nie ma sensu walidować dalej, gdy brak parametrów
         if (!isset($this->form->login))
@@ -80,7 +87,14 @@ class LoginController {
             RoleUtils::addRole('user');
             $this->form->forward = "bookListUser";
         } else {
-            Utils::addErrorMessage('Niepoprawny login lub hasło');
+            $_SESSION['loginFailed']++;
+            Utils::addErrorMessage("Nieprawidłowy użytkownik lub hasło");
+        }
+
+        if ($_SESSION["loginFailed"] > 4) {
+            if ($this->form->captcha !== $_SESSION['captcha']) {
+                Utils::addErrorMessage("Błędna captcha");
+            }
         }
 
         return !App::getMessages()->isError();
@@ -88,6 +102,7 @@ class LoginController {
 
     public function generateView() {
         App::getSmarty()->assign('form', $this->form); // dane formularza do widoku
+        App::getSmarty()->assign('loginFailed', $_SESSION['loginFailed']);
         App::getSmarty()->display('LoginView.tpl');
     }
 }
