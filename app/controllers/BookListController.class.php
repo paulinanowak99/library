@@ -39,9 +39,8 @@ class BookListController {
     }
 
     public function action_bookListUserPart() {
-        $this->validate();
         $this->loadData();
-        $this->validate();
+        $this->assignToSmarty();
         App::getSmarty()->display('TableBookListUser.tpl');
     }
 
