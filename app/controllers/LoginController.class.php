@@ -43,6 +43,7 @@ class LoginController {
     public function validate() {
         $this->form->login = ParamUtils::getFromRequest('login');
         $this->form->password = ParamUtils::getFromRequest('password');
+
         if ($_SESSION["loginFailed"] > 4) {
             $this->form->captcha = ParamUtils::getFromRequest('captcha');
         }
@@ -63,29 +64,32 @@ class LoginController {
         if (App::getMessages()->isError())
             return false;
 
-        $this->form->role = App::getDB()->select("users", "role", [
-            "login" => $this->form->login,
-            "password" => $this->form->password
+        $this->form->passwordHash = App::getDB()->select("users", "password", [
+            "login" => $this->form->login
         ]);
 
-        $this->form->id = App::getDB()->select("users", "id", [
-            "login" => $this->form->login,
-            "password" => $this->form->password
-        ]);
+        if(password_verify($this->form->password, $this->form->passwordHash[0])) {
 
-        $this->form->role = implode($this->form->role);
-        $this->form->id = implode($this->form->id);
+            $this->form->role = App::getDB()->select("users", "role", [
+                "login" => $this->form->login
+            ]);
 
-        $_SESSION['id'] = $this->form->id;
+            $this->form->id = App::getDB()->select("users", "id", [
+                "login" => $this->form->login
+            ]);
 
-        // sprawdzenie, czy dane logowania poprawne
-        // (takie informacje najczęściej przechowuje się w bazie danych)
-        if ($this->form->role == "admin") {
-            RoleUtils::addRole('admin');
-            $this->form->forward = "bookList";
-        } else if ($this->form->role == "user") {
-            RoleUtils::addRole('user');
-            $this->form->forward = "bookListUser";
+            $this->form->role = implode($this->form->role);
+            $this->form->id = implode($this->form->id);
+
+            $_SESSION['id'] = $this->form->id;
+
+            if ($this->form->role == "admin") {
+                RoleUtils::addRole('admin');
+                $this->form->forward = "bookList";
+            } else if ($this->form->role == "user") {
+                RoleUtils::addRole('user');
+                $this->form->forward = "bookListUser";
+            }
         } else {
             $_SESSION['loginFailed']++;
             Utils::addErrorMessage("Nieprawidłowy użytkownik lub hasło");

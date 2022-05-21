@@ -12,5 +12,6 @@ class UserForm {
     public $email;
     public $forward;
     public $captcha;
+    public $passwordHash;
 
 }

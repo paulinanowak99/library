@@ -44,7 +44,8 @@ class BookEditController {
                     App::getDB()->insert("books", [
                         "author" => $this->form->author,
                         "title" => $this->form->title,
-                        "status" => "dostępna"
+                        "status" => "dostępna",
+                        "file" =>$this->form->fileName
                     ]);
                 } else {
                     //Edycja rekordu o danym ID
@@ -99,9 +100,9 @@ class BookEditController {
 
     public function validateSave() {
         //Pobranie danych z formulaarza
-        $this->form->id = ParamUtils::getFromRequest('id', true, 'Błędne wywołanie aplikacjji.');
-        $this->form->author = ParamUtils::getFromRequest('author', true, 'Błędne wywołanie aplikacjji.');
-        $this->form->title = ParamUtils::getFromRequest('title', true, 'Błędne wywołanie aplikacjji.');
+        $this->form->id = ParamUtils::getFromRequest('id', true, 'Błędne wywołanie aplikacji.');
+        $this->form->author = ParamUtils::getFromRequest('author', true, 'Błędne wywołanie aplikacji.');
+        $this->form->title = ParamUtils::getFromRequest('title', true, 'Błędne wywołanie aplikacji.');
 
         if (App::getMessages()->isError()) {
             return false;
@@ -118,6 +119,10 @@ class BookEditController {
         if (App::getMessages()->isError()) {
             return false;
         }
+
+        $tmp_name = $_FILES["file"]["tmp_name"];
+        $this->form->fileName = basename($_FILES["file"]["name"]);
+        move_uploaded_file($tmp_name, "./uploads/".$this->form->fileName);
 
         return !App::getMessages()->isError();
     }

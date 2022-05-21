@@ -87,12 +87,13 @@ class RegistrationController {
         if($this->validateSave()) {
             try {
                 if($this->form->id == '') {
+                    $this->form->passwordHash = password_hash($this->form->password, PASSWORD_BCRYPT);
                     //Dodanie nowego rekordu
                     App::getDB()->insert("users", [
                         "firstname" => $this->form->firstname,
                         "lastname" => $this->form->lastname,
                         "login" => $this->form->login,
-                        "password" => $this->form->password,
+                        "password" => $this->form->passwordHash,
                         "role" => "user"
                     ]);
                 }

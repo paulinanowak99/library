@@ -84,6 +84,7 @@ class BookListController {
                 "id",
                 "author",
                 "title",
+                "file",
                 "status",
             ], [
                 "title[~]" => ($this->form->title . '%'),

@@ -9,4 +9,6 @@ class BookForm {
     public $author;
     public $title;
     public $status;
+    public $file;
+    public $fileName;
 }

@@ -10,4 +10,5 @@ class LoginForm {
     public $password;
     public $role;
     public $captcha;
+    public $passwordHash;
 }

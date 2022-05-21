@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2022-05-18 17:35:10
+/* Smarty version 3.1.34-dev-7, created on 2022-05-19 21:22:31
   from 'C:\xampp\htdocs\library\app\views\BookEdit.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_6285122eabb051_37486598',
+  'unifunc' => 'content_628698f77df5f0_45605943',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e5c32ef44dca0ebc26212aa7d2d49f374ac37118' => 
     array (
       0 => 'C:\\xampp\\htdocs\\library\\app\\views\\BookEdit.tpl',
-      1 => 1652888099,
+      1 => 1652987970,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6285122eabb051_37486598 (Smarty_Internal_Template $_smarty_tpl) {
+function content_628698f77df5f0_45605943 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE HTML>
 <html>
 <head>
@@ -59,9 +59,8 @@ bookSave" method="POST" enctype="multipart/form-data">
 ">
                 </div>
                 <div class="col-4-xlarge">
-                    <label for="image">Okładka</label>
-                    <input id="image" type="file" placeholder="okładka" name="image" value="<?php echo $_smarty_tpl->tpl_vars['form']->value->title;?>
-">
+                    <label for="file">Zdjęcie</label>
+                    <input id="file" type="file" name="file">
                 </div>
                 <div class="col-12">
                     <ul class="actions">

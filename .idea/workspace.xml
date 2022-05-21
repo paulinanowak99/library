@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f988c227-3fd3-43a8-99de-7dcbf738c4a0" name="Default Changelist" comment="" />
+    <list default="true" id="f988c227-3fd3-43a8-99de-7dcbf738c4a0" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/BookEditController.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/BookEditController.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/BookListController.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/BookListController.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/LoginController.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/LoginController.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/RegistrationController.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/RegistrationController.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/forms/BookForm.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/forms/BookForm.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/forms/LoginForm.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/forms/LoginForm.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/forms/PageForm.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/forms/PageForm.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/forms/UserForm.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/forms/UserForm.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/BookEdit.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/BookEdit.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/TableBookList.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/TableBookList.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/templates_c/e5c32ef44dca0ebc26212aa7d2d49f374ac37118_0.file.BookEdit.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/templates_c/e5c32ef44dca0ebc26212aa7d2d49f374ac37118_0.file.BookEdit.tpl.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,7 +44,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/views" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ssizaliczenie" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -61,7 +74,7 @@
       <workItem from="1642599240358" duration="23721000" />
       <workItem from="1650313858908" duration="28676000" />
       <workItem from="1652729020572" duration="48000" />
-      <workItem from="1652813276173" duration="24095000" />
+      <workItem from="1652813276173" duration="33125000" />
     </task>
     <task id="LOCAL-00001" summary="projekt biblioteki (5 semestr)">
       <created>1650314793464</created>
@@ -161,7 +174,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652908990747</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="rozwiązanie problemu z paginacją w widoku BookListUser">
+      <created>1652984175544</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1652984175545</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -182,6 +202,7 @@
     <MESSAGE value="dodanie formularza kontaktowego" />
     <MESSAGE value="dodanie komentarzy niezalogowanych użytkowników" />
     <MESSAGE value="dodanie edytora tekstowego do komentarzy" />
-    <option name="LAST_COMMIT_MESSAGE" value="dodanie edytora tekstowego do komentarzy" />
+    <MESSAGE value="rozwiązanie problemu z paginacją w widoku BookListUser" />
+    <option name="LAST_COMMIT_MESSAGE" value="rozwiązanie problemu z paginacją w widoku BookListUser" />
   </component>
 </project>

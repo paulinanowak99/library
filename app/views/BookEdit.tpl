@@ -20,7 +20,7 @@
     <div id="main">
         <h2>Dodaj książkę</h2>
 
-        <form action="{$conf->action_root}bookSave" method="POST">
+        <form action="{$conf->action_root}bookSave" method="POST" enctype="multipart/form-data">
             <div class="row gtr-uniform">
                 <div class="col-4-xlarge">
                     <label for="author">Autor</label>
@@ -29,6 +29,10 @@
                 <div class="col-4-xlarge">
                     <label for="title">Tytuł</label>
                     <input id="title" type="text" placeholder="tytuł" name="title" value="{$form->title}">
+                </div>
+                <div class="col-4-xlarge">
+                    <label for="file">Zdjęcie</label>
+                    <input id="file" type="file" name="file">
                 </div>
                 <div class="col-12">
                     <ul class="actions">
