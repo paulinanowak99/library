@@ -52,6 +52,7 @@ class BookEditController {
                     App::getDB()->update("books", [
                         "author" => $this->form->author,
                         "title" => $this->form->title,
+                        "file" =>$this->form->fileName
                     ], [
                         "id" => $this->form->id
                     ]);
